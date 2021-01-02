@@ -56,7 +56,7 @@
     <?= $this->Html->script('app/app'); ?>
     <!-- <?= $this->Html->script('files/controle'); ?> -->
     
-    <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
+    
     
     <?= $this->Html->script('services/publishersService.js?'); ?> 
     <?= $this->Html->script('controllers/publishersController.js?'); ?>
@@ -89,7 +89,6 @@
             <ul class="left">
                 <li><button class='button button-2 ' ng-click="Publishers.showPublisher()"><?=__('Novo Publicador')?></button></li>
                 <li><button ng-class="{'button button-2 alert': Publishers.changed, 'button button-2' : !Publishers.changed}" ng-click="Publishers.save()"><?=__('Salvar')?></button></li>
-                <li><button class='button button-2 ' ng-click="Publishers.exportXls()"><?=__('Exportar para Excel')?></button></li>
             </ul>
         </div>
     </nav>

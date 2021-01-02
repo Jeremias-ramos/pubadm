@@ -1,6 +1,9 @@
     
-<? $general_url = $this->Url->build(["controller" => "","action" => ""]); ?>
-<div ng-controller="PublishersController" data-ng-init='initialize("<?=$general_url?>")'>
+
+<div ng-controller="PublishersController" data-ng-init='initialize("")'>
+    <!-- <div>
+        <button class='button button-2 ' ng-click="Publishers.save()"><?=__('Salvar')?></button>
+    </div> -->
     <table id="publishers_table" class='small-12 top-10 table table-striped' role="grid" >
         <thead>
             <tr style="background-color: rgb(190, 229, 241);">
@@ -16,57 +19,56 @@
         </thead>
 
         <tbody ng-repeat="(key, group) in Publishers.reports">
-            <tr style="margin: 0 auto;display: block;white-space: nowrap;text-overflow: ellipsis; ">
-                <td ng-if="$index > 0" style="vertical-align:middle; background-color: rgb(122, 243, 142);">
-                    {{group.nameGroup}}
-                </td>
-            </tr>
-            <tr ng-if="(!publisher.desativado || Publishers.desativados)" ng-repeat="publisher in group  | filter:busca">
-                <input class="form-control" type="text" ng-model="busca" placeholder="Buscar" style="top:20px;vertical-align:middle">
-                <label>
-                    <input type="checkbox" ng-model="Publishers.desativados">Mostrar desativados
-                </label>
-                <!-- <td style="display: block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis; "> -->
-                <td style="vertical-align:middle" ng-click="Publishers.showPublisher(publisher)" >{{publisher.nome}}
-                <!-- <button ng-click="Publisher.showPublisher(publisher)" >{{publisher.nome}} </button> -->
-                <!-- <span ng-click="Publishers.showPublisher(publisher)" ng-model="publisher.nome" >{{publisher.nome}}</span> -->
-                </td>
-                <td style="vertical-align:middle">
-                    <!-- <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" ng-model="Publishers.privilegio[publisher.tipo]"> -->
-                    <select ng-model="publisher.privilegio" ng-change="Publishers.changedCell(publisher)" >
-                        <option selected>{{Publishers.privilegio[publisher.privilegio]}}</option>
-                        <option ng-repeat="tipo in Publishers.privilegio" ng-If="tipo" value="{{$index}}">{{tipo}}</option>
-                    </select>
-                </td>
-                <td>
-                    <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" 
-                    ng-model="publisher.publicacoes" onfocus="this.select();" onmouseup="return false;">
-                </td>
-                <td>
-                    <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" 
-                    ng-model="publisher.videos" onfocus="this.select();" onmouseup="return false;">
-                </td>
-                <td>
-                    <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" 
-                    ng-model="publisher.horas" onfocus="this.select();" onmouseup="return false;">
-                </td>
-                <td>
-                    <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" 
-                    ng-model="publisher.revisitas" onfocus="this.select();" onmouseup="return false;">
-                </td>
-                <td>
-                    <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" 
-                    ng-model="publisher.estudos" onfocus="this.select();" onmouseup="return false;">
-                </td>
-                <td>
-                    <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" 
-                    ng-model="publisher.obs">
-                </td>
-            </tr>
+                <tr style="margin: 0 auto;display: block;white-space: nowrap;text-overflow: ellipsis; ">
+                    <td ng-if="$index > 0" style="vertical-align:middle; background-color: rgb(122, 243, 142);">
+                        {{group.nameGroup}}
+                    </td>
+                </tr>
+                <tr ng-if="(!publisher.desativado || Publishers.desativados)" ng-repeat="publisher in group  | filter:busca">
+                    <input class="form-control" type="text" ng-model="busca" placeholder="Buscar" style="top:20px;vertical-align:middle">
+					<label>
+                        <input type="checkbox" ng-model="Publishers.desativados">Mostrar desativados
+                    </label>
+                    <!-- <td style="display: block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis; "> -->
+                    <td style="vertical-align:middle" ng-click="Publishers.showPublisher(publisher)" >{{publisher.nome}}
+                    <!-- <button ng-click="Publisher.showPublisher(publisher)" >{{publisher.nome}} </button> -->
+                    <!-- <span ng-click="Publishers.showPublisher(publisher)" ng-model="publisher.nome" >{{publisher.nome}}</span> -->
+                    </td>
+                    <td style="vertical-align:middle">
+                        <select ng-model="publisher.privilegio" ng-change="Publishers.changedCell(publisher)" >
+							<option selected>{{Publishers.privilegio[publisher.privilegio]}}</option>
+							<option ng-repeat="tipo in Publishers.privilegio" ng-If="tipo" value="{{$index}}">{{tipo}}</option>
+						</select>
+                    </td>
+                    <td>
+                        <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" 
+                        ng-model="publisher.publicacoes" onfocus="this.select();" onmouseup="return false;">
+                    </td>
+                    <td>
+                        <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" 
+                        ng-model="publisher.videos" onfocus="this.select();" onmouseup="return false;">
+                    </td>
+                    <td>
+                        <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" 
+                        ng-model="publisher.horas" onfocus="this.select();" onmouseup="return false;">
+                    </td>
+                    <td>
+                        <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" 
+                        ng-model="publisher.revisitas" onfocus="this.select();" onmouseup="return false;">
+                    </td>
+                    <td>
+                        <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" 
+                        ng-model="publisher.estudos" onfocus="this.select();" onmouseup="return false;">
+                    </td>
+                    <td>
+                        <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" 
+                        ng-model="publisher.obs">
+                    </td>
+                </tr>
                 
         </tbody>
     </table>
-    <div class="large-12 columns top-10">
+	<div class="large-12 columns top-10">
         <table class='small-12 columns table-tbody-scroll' >
             <thead style="background-color: rgb(123, 182, 250)">
                 <td width="150px"><?=__('')?></td>
@@ -100,7 +102,7 @@
                 <td width="150px"><?=__('Publicadores')?></td>
                 <td width="150px"><?=__('Pioneiros Auxiliares')?></td>
                 <td width="150px"><?=__('Pioneiros Regulares')?></td>
-                <td width="150px"><?=__('inativos')?></td>
+				<td width="150px"><?=__('inativos')?></td>
                 <td width="150px"><?=__('Publicações')?></td>
                 <td width="150px"><?=__('Vídeos')?></td>
                 <td width="150px"><?=__('Horas')?></td>
@@ -113,7 +115,7 @@
                     <td width="150px" >{{Publishers.total.p}}</td>
                     <td width="150px" >{{Publishers.total.pA}}</td>
                     <td width="150px" >{{Publishers.total.pR}}</td>
-                    <td width="150px" >{{Publishers.total.inativos}}</td>
+					<td width="150px" >{{Publishers.total.inativos}}</td>
                     <td width="150px" >{{Publishers.total.publicacoes}}</td>
                     <td width="150px" >{{Publishers.total.videos}}</td>
                     <td width="150px" >{{Publishers.total.horas}}</td>
@@ -123,7 +125,6 @@
             </tbody>
         </table>
     </div>
-    
 
     <script type="text/ng-template" id="addPublisher">
         <div ng-controller='PublishersController'>

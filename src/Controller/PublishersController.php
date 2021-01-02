@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+// use Cake\Routing\Router;
 
 class PublishersController extends AppController
 {
@@ -27,8 +28,8 @@ class PublishersController extends AppController
 
     public function listar()
     {
-        // $this->layout = 'ajax'; 
-        $this->layout = false;
+        // $this->viewBuilder()->setLayout('ajax'); 
+        // $this->viewBuilder()->setLayout('default');
         $this->autoRender = false;
         // $this->request->allowMethod(['post']);
         //Return
@@ -44,7 +45,7 @@ class PublishersController extends AppController
     public function listgroups()
     {
         // $this->layout = 'ajax'; 
-        $this->layout = false;
+        //$this->layout = false;
         $this->autoRender = false;
 
         $grupos_table = TableRegistry::getTableLocator()->get('grupos');
@@ -72,7 +73,7 @@ class PublishersController extends AppController
         $horas = $this->request->getData('horas');
         $revisitas = $this->request->getData('revisitas');
         $estudos = $this->request->getData('estudos');
-        $privilegio = $this->request->getData('privilegio');
+		$privilegio = $this->request->getData('privilegio');
         $mes = $this->request->getData('mes');
         $ano = $this->request->getData('ano');
 
@@ -94,7 +95,7 @@ class PublishersController extends AppController
         $report->horas = $horas;
         $report->revisitas = $revisitas;
         $report->estudos = $estudos;
-        $report->privilegio = $privilegio;
+		$report->privilegio = $privilegio;
         
         if($relatorios_table->save($report, ['atomic' => false])){
             $json = "Ok";
@@ -122,7 +123,6 @@ class PublishersController extends AppController
         $dt_nasc = $this->request->getData('dt_nasc');
         $dt_batismo = $this->request->getData('dt_batismo');
         $fone = $this->request->getData('fone');
-        $desativado = $this->request->getData('desativado');
 
         if($id !== "0"){
             $pub = $this->Publishers->find()->where(['id' => $id])->first();
@@ -139,7 +139,6 @@ class PublishersController extends AppController
         $pub->dt_nasc = $dt_nasc;
         $pub->dt_batismo = $dt_batismo;
         $pub->fone = $fone;
-        // $pub->desativado = $desativado;
         
         if($this->Publishers->save($pub, ['atomic' => false])){
             $json = "Ok";
