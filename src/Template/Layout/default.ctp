@@ -84,7 +84,7 @@
         </ul>
         <div class="top-bar-section">
             <ul class="left">
-                <li><a>Congregação Santa Cruz do Timbó / Grupo Irineópolis</a></li>
+                <li><a>Congregação Santa Cruz do Timbó e Grupo Irineópolis</a></li>
             </ul>
             <ul class="left">
                 <li><button class='button button-2 ' ng-click="Publishers.showPublisher()"><?=__('Novo Publicador')?></button></li>
