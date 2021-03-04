@@ -1,6 +1,6 @@
     
-
-<div ng-controller="PublishersController" data-ng-init='initialize("")'>
+<? $general_url = $this->Url->build(["controller" => "","action" => ""]); ?>
+<div ng-controller="PublishersController" data-ng-init='initialize("<?=$general_url?>")'>
     <!-- <div>
         <button class='button button-2 ' ng-click="Publishers.save()"><?=__('Salvar')?></button>
     </div> -->
@@ -222,6 +222,69 @@
                     <button class='button button-2 alert'  ng-click="Publishers.modClose()"><?=__('Cancelar')?></button>
                 </div>
             </div>
+
+    <table id="publishers_table" class='small-12 top-10 table table-striped' role="grid" >
+        <thead>
+            <tr style="background-color: rgb(190, 229, 241);">
+                <td><?=__('Privilégio')?></td>
+                <td><?=__('Publicações')?></td>
+                <td><?=__('Videos')?></td>
+                <td><?=__('Horas')?></td>
+                <td><?=__('Revisitas')?></td>
+                <td><?=__('Estudos')?></td>
+                <td><?=__('Observação')?></td>
+            </tr>
+        </thead>
+
+        <tbody ng-repeat="(key, group) in Publishers.reports">
+                <tr style="margin: 0 auto;display: block;white-space: nowrap;text-overflow: ellipsis; ">
+                    <td ng-if="$index > 0" style="vertical-align:middle; background-color: rgb(122, 243, 142);">
+                        {{group.nameGroup}}
+                    </td>
+                </tr>
+                <tr ng-if="(!publisher.desativado || Publishers.desativados)" ng-repeat="publisher in group  | filter:busca">
+                    <input class="form-control" type="text" ng-model="busca" placeholder="Buscar" style="top:20px;vertical-align:middle">
+					<label>
+                        <input type="checkbox" ng-model="Publishers.desativados">Mostrar desativados
+                    </label>
+                    <!-- <td style="display: block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis; "> -->
+                    <!-- <button ng-click="Publisher.showPublisher(publisher)" >{{publisher.nome}} </button> -->
+                    <!-- <span ng-click="Publishers.showPublisher(publisher)" ng-model="publisher.nome" >{{publisher.nome}}</span> -->
+                    </td>
+                    <td style="vertical-align:middle">
+                        <select ng-model="publisher.privilegio" ng-change="Publishers.changedCell(publisher)" >
+							<option selected>{{Publishers.privilegio[publisher.privilegio]}}</option>
+							<option ng-repeat="tipo in Publishers.privilegio" ng-If="tipo" value="{{$index}}">{{tipo}}</option>
+						</select>
+                    </td>
+                    <td>
+                        <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" 
+                        ng-model="publisher.publicacoes" onfocus="this.select();" onmouseup="return false;">
+                    </td>
+                    <td>
+                        <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" 
+                        ng-model="publisher.videos" onfocus="this.select();" onmouseup="return false;">
+                    </td>
+                    <td>
+                        <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" 
+                        ng-model="publisher.horas" onfocus="this.select();" onmouseup="return false;">
+                    </td>
+                    <td>
+                        <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" 
+                        ng-model="publisher.revisitas" onfocus="this.select();" onmouseup="return false;">
+                    </td>
+                    <td>
+                        <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" 
+                        ng-model="publisher.estudos" onfocus="this.select();" onmouseup="return false;">
+                    </td>
+                    <td>
+                        <input style="text-align:center" type="text" ng-change="Publishers.changedCell(publisher)" 
+                        ng-model="publisher.obs">
+                    </td>
+                </tr>
+                
+        </tbody>
+    </table>
     </div>
 </script>
             

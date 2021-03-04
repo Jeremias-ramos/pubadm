@@ -3,6 +3,7 @@ app.service('Publishers', function ($rootScope,dialogService) {
      var self = {
 
      	reports : [],
+     	reportPub : [],
 		total : [],
 		privilegio : [],
 		colorPrivilegio : [],
@@ -148,7 +149,7 @@ app.service('Publishers', function ($rootScope,dialogService) {
 			for (let i = 1; i < self.reports.length; i++) {
 // 			for(group of self.reports){
 				for(report of self.reports[i]){
-					if (report.changed){
+					// if (report.changed){
 						var dataSend = {};
 
 						dataSend.id_pub = report.id; // id do publicador
@@ -172,7 +173,7 @@ app.service('Publishers', function ($rootScope,dialogService) {
 								self.changed = false;
 							}
 						});
-					}
+					// }
 				}
 
 			}
@@ -229,6 +230,9 @@ app.service('Publishers', function ($rootScope,dialogService) {
 				$rootScope.form.tipo = 1;
 				$rootScope.form.id_group = 1;
 			}
+
+			
+
 			$rootScope.dialogService.open('addPublisher','addPublisher', model, options).then();
 
 		},
